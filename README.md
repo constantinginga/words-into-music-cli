@@ -6,7 +6,7 @@ Create songs from an idea or your own lyrics, check your song credits and browse
 
 ## Install
 
-Requires Node.js 22 or later. Install the official GitHub release below. The npm registry publication is awaiting the publisher's two-factor authentication.
+Requires Node.js 22 or later. Install the official GitHub release below. Version 1.0.0 has been submitted to npm and is processing. The GitHub release remains available while npm completes publication.
 
 ```sh
 npm install -g github:constantinginga/words-into-music-cli#v1.0.0
