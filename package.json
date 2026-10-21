@@ -8,7 +8,7 @@
   "engines":{"node":">=22"},
   "scripts":{"test":"node --test test/*.test.mjs"},
   "keywords":["words-into-music","ai-music","ai-song-generator","lyrics-to-song","music-api","cli","mcp"],
-  "homepage":"https://wordsintomusic.com/developers/",
+  "homepage":"https://wordsintomusic.com/",
   "repository":{"type":"git","url":"https://github.com/constantinginga/words-into-music-cli.git"},
   "bugs":{"url":"https://github.com/constantinginga/words-into-music-cli/issues"},
   "author":"Words into Music <contact@wordsintomusic.com>",
