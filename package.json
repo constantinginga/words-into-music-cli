@@ -1,17 +1,44 @@
 {
-  "name":"words-into-music-cli",
-  "version":"1.0.0",
-  "description":"Create AI songs from ideas or lyrics, check credits and browse your Words into Music library from the terminal.",
-  "type":"module",
-  "bin":{"wim":"bin/wim.mjs"},
-  "files":["bin/","lib/","README.md","LICENSE"],
-  "engines":{"node":">=22"},
-  "scripts":{"test":"node --test test/*.test.mjs"},
-  "keywords":["words-into-music","ai-music","ai-song-generator","lyrics-to-song","music-api","cli","mcp"],
-  "homepage":"https://wordsintomusic.com/",
-  "repository":{"type":"git","url":"https://github.com/constantinginga/words-into-music-cli.git"},
-  "bugs":{"url":"https://github.com/constantinginga/words-into-music-cli/issues"},
-  "author":"Words into Music <contact@wordsintomusic.com>",
-  "license":"MIT",
-  "publishConfig":{"access":"public","registry":"https://registry.npmjs.org/"}
+  "name": "words-into-music-cli",
+  "version": "1.0.1",
+  "description": "Create AI songs from ideas or lyrics, check credits and browse your Words into Music library from the terminal.",
+  "type": "module",
+  "bin": {
+    "wim": "bin/wim.mjs"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "keywords": [
+    "words-into-music",
+    "ai-music",
+    "ai-song-generator",
+    "lyrics-to-song",
+    "music-api",
+    "cli",
+    "mcp"
+  ],
+  "homepage": "https://wordsintomusic.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/constantinginga/words-into-music-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/constantinginga/words-into-music-cli/issues"
+  },
+  "author": "Words into Music <contact@wordsintomusic.com>",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
