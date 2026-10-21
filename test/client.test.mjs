@@ -1,0 +1,12 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,lstat,readFile,symlink,rm,chmod} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {MusicClient,API_URL} from '../lib/client.mjs';
+import {saveKey,loadKey,removeKey} from '../lib/credentials.mjs';
+const key='wim_'+'a'.repeat(64);
+test('client restricts credentials to the production API and rejects redirects',async()=>{const calls=[];const client=new MusicClient(key,{fetch:async(url,options)=>{calls.push({url,options});return Response.json({ok:true});}});await client.song('a/b',true);assert.equal(calls[0].url,API_URL+'/songs/a%2Fb?includeLyrics=true');assert.equal(calls[0].options.redirect,'error');assert.equal(calls[0].options.headers.Authorization,'Bearer '+key);assert.throws(()=>new MusicClient('bad'));});
+test('start is a single POST and timeout never retries',async()=>{let count=0;const client=new MusicClient(key,{fetch:async()=>{count++;throw Error('sensitive URL or key');}});await assert.rejects(client.start('prepared'),e=>!e.message.includes(key)&&e.message.includes('SAME'));assert.equal(count,1);});
+test('server errors do not print credential-containing response messages',async()=>{const client=new MusicClient(key,{fetch:async()=>Response.json({error:{code:'UNAUTHORIZED',message:key}},{status:401})});await assert.rejects(client.account(),e=>!e.message.includes(key));});
+test('credential storage is private, removable and refuses symlinks',async()=>{const dir=await mkdtemp(join(tmpdir(),'wim-cli-test-'));try{await saveKey(key,dir);assert.equal((await lstat(dir)).mode&0o777,0o700);assert.equal((await lstat(join(dir,'credentials.json'))).mode&0o777,0o600);assert.equal(await loadKey(dir),key);await chmod(join(dir,'credentials.json'),0o644);await assert.rejects(loadKey(dir));await removeKey(dir);assert.equal(await loadKey(dir),undefined);await symlink('/tmp/never-overwrite-this',join(dir,'credentials.json'));await assert.rejects(saveKey(key,dir));}finally{await rm(dir,{recursive:true,force:true});}});
